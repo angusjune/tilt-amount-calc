@@ -48,6 +48,7 @@ body {
     background: var(--background);
     font-family: system-ui, sans-serif;
     position: relative;
+    overflow: hidden;
 }
 
 body::before {

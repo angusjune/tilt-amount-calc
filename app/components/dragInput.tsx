@@ -130,7 +130,7 @@ export default function DragInput({
                     <motion.div
                         className="absolute top-2 bottom-2 w-12 rounded-md custom-box left-[calc(50%-1.5rem)] touch-manipulation"
                         drag={!isNaN(val!) ? "x" : false}
-                        whileDrag={{ filter: "brightness(1.5)" }}
+                        whileHover={{ filter: "brightness(1.5)", scale: 1.05 }}
                         dragConstraints={constraintsRef}
                         dragSnapToOrigin={true}
                         dragElastic={0.2}

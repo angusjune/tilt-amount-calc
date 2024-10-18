@@ -66,8 +66,8 @@ export default function Home() {
     }, [focalLengthMm, focusPlaneDistanceM]);
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-            <main className="w-full flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <div className="grid items-center justify-items-center min-h-[100dvh] p-8 pb-16 gap-18 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+            <main className="w-full flex flex-col gap-8 items-center max-w-[960px] sm:items-start">
                 <motion.div className="font-[family-name:var(--font-geist-sans)] font-semibold gradient-text text-8xl inline-flex mr-[-0.5ch]">
                     <NumberFlow
                         value={tiltAngle}
@@ -77,7 +77,7 @@ export default function Home() {
                     <motion.span layout>°</motion.span>
                 </motion.div>
 
-                <div className="w-full flex gap-8 items-center flex-col sm:flex-row">
+                <div className="w-full flex gap-8 items-center flex-col sm:flex-row sm:items-end">
                     <DragInput
                         label="Focal Length"
                         value={focalLengthMm}
