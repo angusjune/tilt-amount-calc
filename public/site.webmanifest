@@ -1,0 +1,22 @@
+{
+  "name": "Tilt Shift Calculator",
+  "short_name": "Tilt Shift",
+  "description": "Enter lens focal length and the vertical distance between lens and focus plane, to calculate shift amount.",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#202020",
+  "background_color": "#202020",
+  "display": "standalone"
+}

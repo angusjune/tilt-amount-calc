@@ -3,25 +3,91 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: linear-gradient(180deg, #202020 0%, #151515 100%);
+    --foreground: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+    --font-size-min: 16;
+    --font-size-max: 20;
+    --font-ratio-min: 1.2;
+    --font-ratio-max: 1.33;
+    --font-width-min: 375;
+    --font-width-max: 1500;
+}
+
+:where(.fluid) {
+    --fluid-min: calc(
+        var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+    );
+    --fluid-max: calc(
+        var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+    );
+    --fluid-preferred: calc(
+        (var(--fluid-max) - var(--fluid-min)) /
+            (var(--font-width-max) - var(--font-width-min))
+    );
+    --fluid-type: clamp(
+        (var(--fluid-min) / 16) * 1rem,
+        ((var(--fluid-min) / 16) * 1rem) -
+            (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+            (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+        (var(--fluid-max) / 16) * 1rem
+    );
+    font-size: var(--fluid-type);
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: system-ui, sans-serif;
+    position: relative;
+}
+
+body::before {
+    --size: 90px;
+    --line: color-mix(in lch, var(--foreground), transparent 90%);
+    content: "";
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: linear-gradient(
+                90deg,
+                var(--line) 1px,
+                transparent 1px var(--size)
+            )
+            50% 50% / var(--size) var(--size),
+        linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+            var(--size) var(--size);
+    mask: linear-gradient(-20deg, transparent 50%, white);
+    top: 0;
+    transform-style: flat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.gradient-text {
+    color: #e1e1e1;
+    text-shadow: 0px 7px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-box {
+    background: linear-gradient(180deg, #e1e1e1 0%, #b7b7b7 100%);
+    box-shadow: 0px 16px 16px -8px rgba(0, 0, 0, 0.1),
+        0px 8px 8px -4px rgba(0, 0, 0, 0.1), 0px 4px 4px -2px rgba(0, 0, 0, 0.1),
+        0px 0px 10px 0px rgba(0, 0, 0, 0.1),
+        0px 1px 0px 0px rgba(255, 255, 255, 0.8) inset,
+        0px -1px 0px 0px rgba(0, 0, 0, 0.2) inset;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
