@@ -1,17 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Tilt shift amount calculator
 
-## Getting Started
+A simple tilt shift amount calculator web app for photographers. Built with [Next.js](https://nextjs.org)
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Choose your lens focal length (35mm equivilant) and the vertical distance between your lens and the focal plane (the ground in most cases), the app will calculates the degree you should tilt.
