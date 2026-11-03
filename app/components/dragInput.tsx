@@ -4,6 +4,7 @@ import {
     motion,
     PanInfo,
     useMotionValue,
+    useMotionValueEvent,
     useTransform,
 } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -15,6 +16,7 @@ interface DragInputProps {
     step?: number;
     value?: number;
     unit: string;
+    className?: string;
     onInput?: (value: number) => void;
 }
 
@@ -24,6 +26,7 @@ export default function DragInput({
     step = 1,
     value,
     unit,
+    className,
     onInput,
 }: DragInputProps) {
     const constraintsRef = useRef(null);
@@ -34,11 +37,16 @@ export default function DragInput({
     const [val, setVal] = useState(value);
     const [increment, setIncrement] = useState(0);
     const [dragging, setDragging] = useState(false);
+    const [isFront, setIsFront] = useState(false);
 
     const knobX = useMotionValue(0);
     const ruleScaleX = useTransform(knobX, (latestX) => {
         const halfWidth = bounds.width / 2;
         return halfWidth > 0 ? latestX / halfWidth : 0;
+    });
+
+    useMotionValueEvent(knobX, "animationComplete", () => {
+        setIsFront(false);
     });
 
     const handleDrag = (event: Event, info: PanInfo) => {
@@ -51,7 +59,10 @@ export default function DragInput({
     const handleDragEnd = useCallback(() => {
         setDragging(false);
         setPrevVal(val);
-    }, [val]);
+        if (knobX.get() === 0) {
+            setIsFront(false);
+        }
+    }, [val, knobX]);
 
     useEffect(() => {
         if (dragging && !isNaN(preVal!)) {
@@ -74,7 +85,11 @@ export default function DragInput({
     }, [val]);
 
     return (
-        <div className="flex flex-col w-full gap-2">
+        <div
+            className={`flex flex-col w-full gap-2 relative ${
+                isFront ? "z-10" : "z-0"
+            } ${className ?? ""}`}
+        >
             <motion.div layout className="flex text-3xl items-center">
                 <motion.div
                     layout
@@ -138,7 +153,10 @@ export default function DragInput({
                         dragConstraints={constraintsRef}
                         dragSnapToOrigin={true}
                         dragElastic={0.2}
-                        onDragStart={() => setDragging(true)}
+                        onDragStart={() => {
+                            setDragging(true);
+                            setIsFront(true);
+                        }}
                         onDrag={handleDrag}
                         onDragEnd={handleDragEnd}
                     ></motion.div>
