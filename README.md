@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a tilt shift amount calcultor for photographers. Optimized for mobile use.
+
+[https://tilt-shift.netlify.app](https://tilt-shift.netlify.app)
 
 ## Getting Started
 
