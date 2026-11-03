@@ -1,19 +1,7 @@
-This is a tilt shift amount calcultor for photographers. Optimized for mobile use.
+A simple tilt shift amount calcultor for photographers. Optimized for mobile use.
 
 [https://tilt-shift.netlify.app](https://tilt-shift.netlify.app)
 
-## Getting Started
+## Tilt shift amount calculator
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Choose your lens focal length (35mm equivilant) and the vertical distance between your lens and the focal plane (the ground in most cases), the app will calculates the degree you should tilt.
