@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     description: "Simple tilt shift amount calculator",
     appleWebApp: true,
     manifest: "/site.webmanifest",
-    themeColor: "#202020",
     icons: "/apple-touch-icon.png",
 };
 
